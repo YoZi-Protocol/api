@@ -1,0 +1,32 @@
+[package]
+name = "eos420-services"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-only"
+publish = false
+
+[package.metadata.cargo-machete]
+ignored = ["more-di"]
+
+[dependencies]
+eos420-primitives = { path = "../primitives" }
+eos420-service-derive = { path = "./derive" }
+
+fastid = "0.3"
+more-di = { version = "3.1", features = ["async"] }
+sea-orm = { version = "0.12", default-features = false, features = [
+    "with-json",
+    "with-time",
+    "with-uuid",
+] }
+time = "0.3"
+
+moka-cache = { package = "moka", version = "0.12", features = [
+    "future",
+], optional = true }
+
+[features]
+default = []
+
+cache = []
+moka = ["cache", "moka-cache"]

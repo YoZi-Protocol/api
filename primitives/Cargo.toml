@@ -1,0 +1,32 @@
+[package]
+name = "eos420-primitives"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-only"
+publish = false
+
+[dependencies]
+derive_builder = "0.20"
+serde = { version = "1.0", features = ["derive"] }
+serde_with = { version = "3.6", features = ["hex", "macros"] }
+
+clap = { version = "4.4", default-features = false, features = [
+    "std",
+    "derive",
+] }
+num-bigint = "0.4"
+num-traits = "0.2"
+sea-orm = { version = "0.12", default-features = false, features = [
+    "with-json",
+    "with-time",
+    "with-uuid",
+    "macros",
+] }
+time = { version = "0.3", default-features = false, features = [
+    "std",
+    "serde",
+    "formatting",
+    "parsing",
+] }
+
+paste = "1.0"

@@ -1,0 +1,11 @@
+[workspace]
+members = ["migration", "primitives", "services", "services/derive", "api"]
+
+resolver = "2"
+
+[profile.release]
+opt-level = "z"
+codegen-units = 1
+lto = "fat"
+panic = "abort"
+strip = "symbols"

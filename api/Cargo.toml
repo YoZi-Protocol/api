@@ -1,0 +1,44 @@
+[package]
+name = "eos420-api"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-only"
+publish = false
+
+build = "../build.rs"
+
+[package.metadata.cargo-machete]
+ignored = ["more-di"]
+
+[dependencies]
+migration = { path = "../migration" }
+eos420-primitives = { path = "../primitives" }
+eos420-services = { path = "../services", features = ["moka"] }
+
+actix-cors = "0.7"
+actix-web = { version = "4.4", features = ["openssl"] }
+more-di = { version = "3.1", features = ["async"] }
+sea-orm = { version = "0.12", default-features = false, features = [
+    "sqlx-mysql",
+    "sqlx-postgres",
+    "runtime-actix-native-tls",
+    "with-json",
+    "with-time",
+    "with-uuid",
+] }
+
+clap = { version = "4.4", features = ["cargo"] }
+config = "0.14"
+serde_qs = { version = "0.12", features = ["actix4"] }
+
+eyre = "0.6"
+
+env_logger = "0.11"
+log = "0.4"
+
+[target.'cfg(unix)'.dependencies]
+tikv-jemallocator = "0.5"
+
+[build-dependencies]
+
+built = { version = "0.7", features = ["git2"] }
